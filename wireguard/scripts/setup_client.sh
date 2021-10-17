@@ -7,8 +7,19 @@ PORT=$2
 PEER_KEY=$3
 PEER_ENDPOINT=$4
 
-mkdir -p mountPoint/config
-WGFILE=mountPoint/config/wg0.conf
+if [ -z "$ADDRESS" ]; then
+    default_address=10.0.0.2/24
+    echo "Address is empty, defaulting to $default_address"
+    ADDRESS=$default_address
+fi
+
+if [ -z "$PORT" ]; then
+    default_port=51820
+    echo "Port is empty, defaulting to $default_port"
+    PORT=$default_port
+fi
+
+WGFILE=/config/wg0.conf
 
 append_wg() {
     echo "$1" >> $WGFILE
