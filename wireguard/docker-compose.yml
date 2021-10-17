@@ -10,6 +10,7 @@ services:
     volumes:
       - ./mountPoint/config:/config
       - ./mountPoint/modules:/lib/modules
+      - ./scripts:/scripts
     ports:
       - ${SERVERPORT}:${SERVERPORT}/udp
     sysctls:
